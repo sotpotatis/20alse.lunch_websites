@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Eatery-menyn</title>
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <!-- Avkommentera för test (via CDN) <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Handlebars -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+   <!-- Luxon -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.2.0/build/global/luxon.min.js" integrity="sha256-xqS3EQeErZ6JG7Y//jjn1LB1pxI7ZzK8hVOtpND9BSA=" crossorigin="anonymous"></script>
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+</head>
+<body class="h-screen min-h-screen bg-gray-700 text-white mr-12 ml-12 mt-12 flex flex-col gap-12">
+<!-- Heading -->
+<div id="header" class="grid grid-cols-2 bg-gray-800 p-3 rounded-lg border-2 border-white">
+    <div class="flex flex-col gap-4">
+        <h1 class="text-4xl font-bold">Veckans meny</h1>
+<p class="text-sm">för Eatery Kista Nod.</p>
+    </div>
+
+</div>
+<div id="error-box" class="bg-red-500 rounded-lg p-3 border-2 border-white">
+    <h1 class="text-lg font-bold">Meny inte tillgänglig</h1>
+    <p>{{error_message}} Försök igen senare.</p>
+</div>
+<div id="items" class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-4">
+    {{#if loading}}
+        <!-- Ikon credit: https://icon-sets.iconify.design/ant-design/loading-outlined/ -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="animate-spin text-4xl" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 1024 1024"><path d="M988 548c-19.9 0-36-16.1-36-36c0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9a437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7c26.7 63.1 40.2 130.2 40.2 199.3c.1 19.9-16 36-35.9 36z" fill="currentColor"/></svg>
+        {{/if}}
+        {{#unless loading}}
+    {{#each menu_days}}
+    <div class="{{#ifEquals @index weekday}}bg-gray-100 border-gray-400{{else}}bg-gray-100 border-gray-400{{/ifEquals}} rounded-lg p-3 border-2 text-gray-500 mb-5">
+        <h3 class="text-lg font-bold">{{this.day_name.swedish}}</h3>
+        <hr class="w-3/4 border-gray-300 border-t-2 pb-3">
+        <div id="menu-content">
+        <div id="menu-items" class="flex flex-col gap-6">
+            {{#each this.dishes}}
+        	<p>{{this}}</p>
+            {{/each}}
+            </div>
+            </div>
+    </div>
+    {{/each}}
+        {{/unless}}
+
+</div>
+<div id="footer text-sm">
+    <div class="flex gap-4">
+        <p class="focus:underline focus:cursor-pointer" onclick="location.href='https://lunchmeny.albins.website/api'">API</p>
+        <p class="focus:underline focus:cursor-pointer" onclick="location.href='mailto:20alse@stockholmscience.se'">Kontakt</p>
+    </div>
+</div>
+<!-- Kod för att hämta och visa mat -->
+<script src="script/mat.js"></script>
+</body>
+</html>
