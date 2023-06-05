@@ -3,3 +3,7 @@
 # Lunch website
 
 This is a popular one - it is a website that uses my school lunch API to display a menu. I wrote it in an afternoon but me and many others used it daily all until the graduation. Also check out the "legacy" PHP version of this website!
+
+## Install
+
+Put a `tailwind.css` in the `css/` subdirectory containing Tailwind CSS source code.

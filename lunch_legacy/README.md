@@ -3,3 +3,9 @@
 # Lunch legacy
 
 This is a legacy version of my lunch menu website which runs entirely using PHP. It displays the lunch menu using my lunch menu API. Also check out the non-legacy version of this website.
+
+## Install
+
+Install the required dependencies using Composer:
+
+`composer install`
