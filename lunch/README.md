@@ -6,4 +6,4 @@ This is a popular one - it is a website that uses my school lunch API to display
 
 ## Install
 
-Put a `tailwind.css` in the `css/` subdirectory containing Tailwind CSS source code.
+Put a `tailwind.css` in the `css/` subdirectory containing Tailwind CSS source stylesheet.
